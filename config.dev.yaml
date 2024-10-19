@@ -1,0 +1,30 @@
+server:
+  mode: "debug" # debug, test, release
+  port: "8080"
+
+database:
+  host: "localhost"
+  port: "3306"
+  user: "root"
+  password: "2maminghan."
+  dbname: "test"
+
+redis:
+  host: "localhost"
+  port: "6379"
+  password: ""
+  db: "0"
+
+logger:
+  level: "debug"
+  fileName: "./logs/orca.log"
+  maxSize: "1"
+  maxAge: "7"
+  maxBackups: "10"
+
+captcha:
+  # digit, string, audio, math, chinese 更推荐digit
+  type: "digit"
+  height: "40"
+  width: "120"
+  length: "6"
