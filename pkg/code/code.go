@@ -5,6 +5,8 @@ import (
 	"sync"
 )
 
+//go:generate codegen -type=Code -output register.go
+//go:generate codegen -type=Code -doc -output ../../docs/error_code.md
 type Code int
 
 var Codes = map[Code]Coder{}

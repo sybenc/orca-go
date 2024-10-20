@@ -23,11 +23,11 @@ echo -e "${prefix}数据库名称：${green}${bold}$db_name${reset}"
 echo -e "${prefix}数据库主机地址：${green}${bold}$db_host${reset}"
 
 sql_files=(
-  './sql/users.sql'
-  './sql/menu.sql'
-  './sql/roles.sql'
-  './sql/role_menu.sql'
-  './sql/user_role.sql'
+  './scripts/sql/users.sql'
+  './scripts/sql/menu.sql'
+  './scripts/sql/roles.sql'
+  './scripts/sql/role_menu.sql'
+  './scripts/sql/user_role.sql'
 )
 
 echo -e "${yellow}${prefix}正在检查数据库 ${green}${db_name}${yellow} 是否存在...${reset}"

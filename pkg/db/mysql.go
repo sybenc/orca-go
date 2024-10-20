@@ -12,7 +12,7 @@ import (
 var Mysql *gorm.DB
 var once sync.Once
 
-func init() {
+func InitMysql() {
 	once.Do(func() {
 		dsn := fmt.Sprintf(`%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=%t&loc=%s`,
 			conf.GetString("database.user"),

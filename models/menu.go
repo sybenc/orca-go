@@ -2,15 +2,15 @@ package models
 
 import (
 	"database/sql/driver"
-	"errors"
+	errors "orca/pkg/erorrs"
 )
 
 type MenuType string
 
 const (
-	Menu_     MenuType = "Menu"
-	Directory MenuType = "Directory"
-	Button    MenuType = "Button"
+	EnumMenuTypeMenu      MenuType = "Menu"
+	EnumMenuTypeDirectory MenuType = "Directory"
+	EnumMenuTypeButton    MenuType = "Button"
 )
 
 type Menu struct {
@@ -19,10 +19,10 @@ type Menu struct {
 	MenuID      uint64   `gorm:"type:bigint" json:"menuId"`
 	Label       string   `gorm:"type:varchar(20)" json:"label"`
 	Code        string   `gorm:"type:varchar(255)" json:"code"`
-	ParentID    uint64   `gorm:"type:bigint" json:"parentId"`
+	ParentID    *uint64  `gorm:"type:bigint" json:"parentId"`
 	Type        MenuType `json:"type"`
-	Route       string   `gorm:"type:text" json:"route"`
-	Component   string   `gorm:"type:text" json:"component"`
+	Route       *string  `gorm:"type:text" json:"route"`
+	Component   *string  `gorm:"type:text" json:"component"`
 	IconName    string   `gorm:"type:varchar(255)" json:"iconName"`
 	Order       uint     `gorm:"type:int" json:"order"`
 	KeepAlive   bool     `gorm:"type:boolean" json:"keepAlive"`
@@ -35,7 +35,11 @@ type Menu struct {
 
 type MenuList struct {
 	Total int64   `json:"total"`
-	Items []*User `json:"items"`
+	Items []*Menu `json:"items"`
+}
+
+func (Menu) TableName() string {
+	return "menu"
 }
 
 func (mt *MenuType) Value() (driver.Value, error) {
@@ -46,19 +50,19 @@ func (mt *MenuType) Scan(value any) error {
 	if value == nil {
 		return nil
 	}
-	val, ok := value.(string)
+	bytes, ok := value.([]byte)
 	if !ok {
-		return errors.New("failed to scan UserStatus")
+		return errors.New("failed to scan MenuType")
 	}
-	switch val {
+	switch string(bytes) {
 	case "Menu":
-		*mt = Menu_
+		*mt = EnumMenuTypeMenu
 	case "Directory":
-		*mt = Directory
+		*mt = EnumMenuTypeDirectory
 	case "Button":
-		*mt = Button
+		*mt = EnumMenuTypeButton
 	default:
-		return errors.New("unknown UserStatus value")
+		return errors.New("unknown MenuType value")
 	}
 	return nil
 }

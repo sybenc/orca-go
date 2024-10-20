@@ -1,7 +1,9 @@
 package models
 
+import "time"
+
 type Model struct {
-	CreatedAt uint64 `gorm:"type:timestamp" json:"createdAt"`
-	UpdatedAt uint64 `gorm:"type:timestamp" json:"updatedAt"`
-	DeletedAt uint64 `gorm:"type:bigint" json:"deletedAt"`
+	CreatedAt time.Time `gorm:"type:datetime" json:"createdAt"`
+	UpdatedAt time.Time `gorm:"type:datetime" json:"updatedAt"`
+	DeletedAt uint64    `gorm:"type:bigint" json:"deletedAt"`
 }

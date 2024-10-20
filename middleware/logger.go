@@ -19,7 +19,7 @@ import (
 var lg *zap.Logger
 
 // InitLogger 初始化Logger
-func init() {
+func InitLogger() {
 	writeSyncer := getLogWriter(
 		conf.GetString("logger.fileName"),
 		conf.GetInt("logger.maxSize"),
@@ -29,7 +29,7 @@ func init() {
 	var l = new(zapcore.Level)
 	err := l.UnmarshalText([]byte(conf.GetString("logger.level")))
 	if err != nil {
-		return
+		panic("初始化日志失败")
 	}
 	core := zapcore.NewCore(encoder, writeSyncer, l)
 
