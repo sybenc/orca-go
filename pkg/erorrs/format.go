@@ -166,14 +166,14 @@ func buildFormatInfo(e error) *formatInfo {
 	switch err := e.(type) {
 	case *fundamental:
 		finfo = &formatInfo{
-			code:    code.Codes[code.InternalServer].Code(),
+			code:    code.Codes[code.ErrInternalServer].Code(),
 			message: err.msg,
 			err:     err.msg,
 			stack:   err.stack,
 		}
 	case *withStack:
 		finfo = &formatInfo{
-			code:    code.Codes[code.InternalServer].Code(),
+			code:    code.Codes[code.ErrInternalServer].Code(),
 			message: err.Error(),
 			err:     err.Error(),
 			stack:   err.stack,
@@ -181,7 +181,7 @@ func buildFormatInfo(e error) *formatInfo {
 	case *withCode:
 		coder, ok := code.Codes[err.code]
 		if !ok {
-			coder = code.Codes[code.InternalServer]
+			coder = code.Codes[code.ErrInternalServer]
 		}
 
 		extMsg := coder.Message()
@@ -197,7 +197,7 @@ func buildFormatInfo(e error) *formatInfo {
 		}
 	default:
 		finfo = &formatInfo{
-			code:    code.Codes[code.InternalServer].Code(),
+			code:    code.Codes[code.ErrInternalServer].Code(),
 			message: err.Error(),
 			err:     err.Error(),
 		}

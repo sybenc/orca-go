@@ -10,17 +10,17 @@ type UserStatus string
 type UserGender string
 
 const (
-	Active     UserStatus = "Active"
-	Unverified UserStatus = "Unverified"
-	Disabled   UserStatus = "Disabled"
-	Deleted    UserStatus = "Deleted"
-	Locked     UserStatus = "Locked"
-	Cancelled  UserStatus = "Cancelled"
+	EnumUserStatusActive     UserStatus = "Active"
+	EnumUserStatusUnverified UserStatus = "Unverified"
+	EnumUserStatusDisabled   UserStatus = "Disabled"
+	EnumUserStatusDeleted    UserStatus = "Deleted"
+	EnumUserStatusLocked     UserStatus = "Locked"
+	EnumUserStatusCancelled  UserStatus = "Cancelled"
 )
 const (
-	Female UserGender = "Female"
-	Male   UserGender = "Male"
-	Other  UserGender = "Other"
+	EnumUserGenderFemale UserGender = "Female"
+	EnumUserGenderMale   UserGender = "Male"
+	EnumUserGenderOther  UserGender = "Other"
 )
 
 type User struct {
@@ -71,17 +71,17 @@ func (us *UserStatus) Scan(value any) error {
 	}
 	switch val {
 	case "Active":
-		*us = Active
+		*us = EnumUserStatusActive
 	case "Unverified":
-		*us = Unverified
+		*us = EnumUserStatusUnverified
 	case "Disabled":
-		*us = Disabled
+		*us = EnumUserStatusDisabled
 	case "Deleted":
-		*us = Deleted
+		*us = EnumUserStatusDeleted
 	case "Locked":
-		*us = Locked
+		*us = EnumUserStatusLocked
 	case "Cancelled":
-		*us = Cancelled
+		*us = EnumUserStatusCancelled
 	default:
 		return errors.New("unknown UserStatus value")
 	}
@@ -96,17 +96,17 @@ func (ug *UserGender) Scan(value any) error {
 	if value == nil {
 		return nil
 	}
-	val, ok := value.(string)
+	bytes, ok := value.([]byte)
 	if !ok {
 		return errors.New("failed to scan UserStatus")
 	}
-	switch val {
+	switch string(bytes) {
 	case "Female":
-		*ug = Female
+		*ug = EnumUserGenderFemale
 	case "Male":
-		*ug = Male
+		*ug = EnumUserGenderMale
 	case "Other":
-		*ug = Other
+		*ug = EnumUserGenderOther
 	default:
 		return errors.New("unknown UserStatus value")
 	}

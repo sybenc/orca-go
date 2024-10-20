@@ -1,25 +1,21 @@
 package code
 
-// Common: basic errors
 const (
-	// Success - 200: OK.
+	// Success - 200: 请求成功。
 	Success Code = iota + 100001
 
-	// InternalServer - 500: Internal service error.
-	InternalServer
+	// ErrInternalServer - 500: 服务器内部错误。
+	ErrInternalServer
 
-	// Database - 500: Database error.
-	Database
+	// ErrBadRequest - 400: 请求存在错误。
+	ErrBadRequest
 
-	// BadRequest - 400: Bad Request.
-	BadRequest
+	// ErrNotFound - 404: 资源未找到。
+	ErrNotFound
 
-	// PageNotFound - 404: Page not found.
-	PageNotFound
+	// ErrValidation - 400: 字段验证错误。
+	ErrValidation
 
-	// Validation - 400: Validation failed.
-	Validation
-
-	// Bind - 400: Invalid request parameters.
-	Bind
+	// ErrBind - 400: 绑定参数错误。
+	ErrBind
 )

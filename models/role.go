@@ -12,5 +12,7 @@ type Role struct {
 
 type RoleList struct {
 	Total int64   `json:"total"`
-	Items []*User `json:"items"`
+	Items []*Role `json:"items"`
 }
+
+func (Role) TableName() string { return "roles" }

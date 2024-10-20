@@ -9,7 +9,7 @@ import (
 
 var Redis *redis.Client
 
-func init() {
+func InitRedis() {
 	var c = context.Background()
 	Redis = redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%s", conf.GetString("redis.host"), conf.GetString("redis.port")),
