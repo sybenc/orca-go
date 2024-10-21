@@ -25,4 +25,5 @@
 | ErrNotFound | 100004 | 404 | 资源未找到 |
 | ErrValidation | 100005 | 400 | 字段验证错误 |
 | ErrBind | 100006 | 400 | 绑定参数错误 |
+| ErrMenuAlreadyExist | 100101 | 409 | 菜单已存在 |
 

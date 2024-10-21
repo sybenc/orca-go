@@ -16,6 +16,6 @@ const (
 	// ErrValidation - 400: 字段验证错误。
 	ErrValidation
 
-	// ErrBind - 400: 绑定参数错误。
+	// ErrBind - 400: 参数绑定错误。
 	ErrBind
 )

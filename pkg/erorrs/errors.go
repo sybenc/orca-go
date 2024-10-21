@@ -359,6 +359,5 @@ func ParseCoder(err error) code.Coder {
 			return coder
 		}
 	}
-
 	return code.Codes[code.ErrInternalServer]
 }

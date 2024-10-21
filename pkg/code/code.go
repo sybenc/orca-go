@@ -12,7 +12,7 @@ type Code int
 var Codes = map[Code]Coder{}
 var codeMutex = &sync.Mutex{}
 
-var AllowHttpStatus = [6]int{200, 400, 401, 403, 404, 500}
+var AllowHttpStatus = [7]int{200, 400, 401, 403, 404, 409, 500}
 
 type Coder interface {
 	// Code 返回这个Coder的Code值
@@ -70,12 +70,13 @@ func register(code Code, httpStatus int, message string, refs ...string) {
 		}
 	}
 	if !found {
-		log.Panicf("为了方便处理，Orca系统只使用200, 400, 401, 403, 404, 500六种HTTP状态码\n" +
+		log.Panicf("为了方便处理，Orca系统只使用200, 400, 401, 403, 404, 409，500七种HTTP状态码\n" +
 			"200：请求成功\n" +
 			"400：请求存在语法错误，服务器无法理解\n" +
 			"401：客户端未通过身份验证\n" +
 			"403：客户端无权访问指定资源\n" +
 			"404：找不到指定资源\n" +
+			"409：请求的资源存在冲突\n" + 
 			"500：服务器内部发生错误\n")
 	}
 	var reference string

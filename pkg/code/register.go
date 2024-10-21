@@ -7,4 +7,5 @@ func init() {
 	register(ErrNotFound, 404, "资源未找到")
 	register(ErrValidation, 400, "字段验证错误")
 	register(ErrBind, 400, "绑定参数错误")
+	register(ErrMenuAlreadyExist, 409, "菜单已存在")
 }

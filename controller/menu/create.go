@@ -16,6 +16,13 @@ func (m *menuController) Create(c *gin.Context) {
 		response.Fail(c, errors.WithCode(code.ErrBind, "创建菜单时数据绑定错误"))
 		return
 	}
+
+	if db.Mysql.Model(&models.Menu{}).
+		Where("code=? or label=?", menu.Code, menu.Label).First(&menu).RowsAffected > 0 {
+		response.Fail(c, errors.WithCode(code.ErrMenuAlreadyExist, "创建菜单时资源发生冲突"))
+		return
+	}
+
 	if menu.Type != models.EnumMenuTypeMenu {
 		menu.Component = nil
 		menu.ParentID = nil
