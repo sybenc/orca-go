@@ -2,7 +2,8 @@ package models
 
 import (
 	"database/sql/driver"
-	errors "orca/pkg/erorrs"
+	errors "orca/pkg/errors"
+	"orca/pkg/validation"
 )
 
 type MenuType string
@@ -38,8 +39,17 @@ type MenuList struct {
 	Items []*Menu `json:"items"`
 }
 
-func (Menu) TableName() string {
+func (m *Menu) TableName() string {
 	return "menu"
+}
+
+func (m *Menu) Validate() error {
+	return validation.ValidateStruct(
+		m,
+		validation.Field(&m.Code, validation.Required, validation.Length(1, 255)),
+		validation.Field(&m.Label, validation.Required, validation.Length(1, 20)),
+		validation.Field(&m.Type, validation.Required, validation.In(EnumMenuTypeMenu, EnumMenuTypeDirectory, EnumMenuTypeButton)),
+		validation.Field(&m.Status, validation.Required))
 }
 
 func (mt *MenuType) Value() (driver.Value, error) {

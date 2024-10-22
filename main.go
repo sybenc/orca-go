@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-	conf.InitConfig("dev")
+	conf.InitConfig(conf.Development)
 	middleware.InitLogger()
 	db.InitMysql()
 	db.InitRedis()

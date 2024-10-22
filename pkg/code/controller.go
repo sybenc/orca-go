@@ -5,4 +5,7 @@ package code
 const (
 	// ErrMenuAlreadyExist - 409: 菜单已存在。
 	ErrMenuAlreadyExist Code = iota + 100101
+
+	// ErrMenuNotFound - 404: 菜单未找到。
+	ErrMenuNotFound Code = iota + 100101
 )
