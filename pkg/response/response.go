@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"orca/pkg/code"
-	"orca/pkg/erorrs"
+	"orca/pkg/errors"
 )
 
 // Success 表示本次请求成功，并返回请求信息和HTTP状态

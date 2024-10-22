@@ -23,6 +23,13 @@
 | ErrInternalServer | 100002 | 500 | 服务器内部错误 |
 | ErrBadRequest | 100003 | 400 | 请求存在错误 |
 | ErrNotFound | 100004 | 404 | 资源未找到 |
+<<<<<<< HEAD
 | ErrValidation | 100005 | 400 | 字段验证错误 |
 | ErrBind | 100006 | 400 | 绑定参数错误 |
+=======
+| ErrValidate | 100005 | 400 | 字段验证错误 |
+| ErrBind | 100006 | 400 | 参数绑定错误 |
+| ErrMenuAlreadyExist | 100101 | 409 | 菜单已存在 |
+| ErrMenuNotFound | 100102 | 404 | 菜单未找到 |
+>>>>>>> sybenc_add_menu_controller
 

@@ -7,6 +7,12 @@ import (
 	"time"
 )
 
+const (
+	Development = "dev"
+	Test        = "test"
+	Production  = "prod"
+)
+
 // viper 库实例
 var viper *viperlib.Viper
 

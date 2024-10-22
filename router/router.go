@@ -13,4 +13,5 @@ func Add(server *gin.Engine) {
 	server.POST("/menu", menu.Controller.Create)
 	server.GET("/menu/:id", menu.Controller.Get)
 	server.GET("/menu", menu.Controller.List)
+	server.DELETE("/menu", menu.Controller.Delete)
 }

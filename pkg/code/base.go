@@ -1,5 +1,7 @@
 package code
 
+//go:generate codegen -type=Code -output register.go
+//go:generate codegen -type=Code -doc -output ../../docs/error_code.md
 const (
 	// Success - 200: 请求成功。
 	Success Code = iota + 100001
@@ -13,9 +15,9 @@ const (
 	// ErrNotFound - 404: 资源未找到。
 	ErrNotFound
 
-	// ErrValidation - 400: 字段验证错误。
-	ErrValidation
+	// ErrValidate - 400: 字段验证错误。
+	ErrValidate
 
-	// ErrBind - 400: 绑定参数错误。
+	// ErrBind - 400: 参数绑定错误。
 	ErrBind
 )
