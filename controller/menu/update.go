@@ -12,9 +12,9 @@ import (
 
 func (m *menuController) Update(c *gin.Context) {
 	var menu models.Menu
-	id := c.Param("id")
+	code_ := c.Param("code")
 
-	if db.Mysql.Model(&models.Menu{}).Where("menu_id = ?", id).First(&menu).RowsAffected == 0 {
+	if db.Mysql.Model(&models.Menu{}).Where("code = ?", code_).First(&menu).RowsAffected == 0 {
 		response.Fail(c, errors.WithCode(code.ErrMenuNotFound, "菜单未找到D"))
 		return
 	}
@@ -30,7 +30,7 @@ func (m *menuController) Update(c *gin.Context) {
 	}
 
 	err := db.Mysql.Transaction(func(tx *gorm.DB) error {
-		if err := tx.Model(&models.Menu{}).Where("menu_id = ?", id).Save(&menu).Error; err != nil {
+		if err := tx.Model(&models.Menu{}).Where("code = ?", code_).Save(&menu).Error; err != nil {
 			return errors.WithCode(code.ErrInternalServer, "更新菜单失败")
 		}
 		return nil

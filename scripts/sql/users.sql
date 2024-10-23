@@ -1,8 +1,8 @@
 create table if not exists users
 (
     user_id       bigint unsigned auto_increment comment '用户ID',
-    created_at  datetime    not null default current_timestamp comment '创建时间',
-    updated_at  datetime    not null default current_timestamp on update current_timestamp comment '最后更新时间',
+    created_at    datetime    not null default current_timestamp comment '创建时间',
+    updated_at    datetime    not null default current_timestamp on update current_timestamp comment '最后更新时间',
     deleted_at    bigint               default 0 comment '删除时间',
     last_login_at timestamp            default null comment '最后登陆时间',
     last_login_ip varchar(128)         default null comment '最后登陆IP',

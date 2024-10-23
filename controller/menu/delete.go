@@ -12,17 +12,17 @@ import (
 
 func (m *menuController) Delete(c *gin.Context) {
 	var menu []models.Menu
-	ids := c.QueryArray("ids")
-	if len(ids) == 0 {
+	codes := c.QueryArray("codes")
+	if len(codes) == 0 {
 		response.Fail(c, errors.WithCode(code.ErrValidate, "无效的菜单ID"))
 		return
 	}
-	if db.Mysql.Model(&models.Menu{}).Where("menu_id in ?", ids).Find(&menu).RowsAffected != int64(len(ids)) {
+	if db.Mysql.Model(&models.Menu{}).Where("code in ?", codes).Find(&menu).RowsAffected != int64(len(codes)) {
 		response.Fail(c, errors.WithCode(code.ErrValidate, "存在无效的菜单ID"))
 		return
 	}
 	err := db.Mysql.Transaction(func(tx *gorm.DB) error {
-		if err := db.Mysql.Where("menu_id in ?", ids).Delete(&models.Menu{}).Error; err != nil {
+		if err := db.Mysql.Where("code in ?", codes).Delete(&models.Menu{}).Error; err != nil {
 			return errors.WithCode(code.ErrValidate, "删除菜单时，发生错误")
 		}
 		return nil

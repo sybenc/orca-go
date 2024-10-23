@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # 定义文本颜色变量
 red='\033[31m'
@@ -24,6 +24,7 @@ echo -e "${prefix}数据库主机地址：${green}${bold}$db_host${reset}"
 
 sql_files=(
   './scripts/sql/users.sql'
+  './scripts/sql/user_auth.sql'
   './scripts/sql/menu.sql'
   './scripts/sql/roles.sql'
   './scripts/sql/role_menu.sql'
