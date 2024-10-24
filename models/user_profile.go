@@ -15,6 +15,7 @@ const (
 )
 
 type UserProfile struct {
+	ID            uint64     `gorm:"type:bigint" json:"id"`
 	UserProfileID uint64     `json:"userProfileId"`
 	Email         string     `gorm:"type:varchar(64);not null" json:"email"`
 	Phone         string     `gorm:"type:varchar(20)" json:"phone"`

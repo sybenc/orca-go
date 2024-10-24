@@ -3,6 +3,7 @@ package models
 import "time"
 
 type UserLoginDevice struct {
+	ID                uint64    `gorm:"type:bigint" json:"id"`
 	UserLoginDeviceID uint64    `gorm:"type:bigint" json:"userLoginDeviceId"`
 	OS                string    `gorm:"type:varchar(64)" json:"os"`
 	DeviceName        string    `gorm:"type:varchar(100)" json:"deviceName"`

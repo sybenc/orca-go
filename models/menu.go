@@ -2,7 +2,9 @@ package models
 
 import (
 	"database/sql/driver"
-	errors "orca/pkg/errors"
+	"gorm.io/gorm"
+	"orca/pkg/errors"
+	"orca/pkg/utils/idutils"
 	"orca/pkg/validation"
 )
 
@@ -17,10 +19,10 @@ const (
 type Menu struct {
 	Model `json:",inline"`
 
-	MenuID      uint64   `gorm:"type:bigint" json:"menuId"`
+	MenuID      string   `gorm:"type:varchar(21)" json:"menuId"`
 	Label       string   `gorm:"type:varchar(20)" json:"label"`
 	Code        string   `gorm:"type:varchar(255)" json:"code"`
-	ParentID    *uint64  `gorm:"type:bigint" json:"parentId"`
+	ParentID    *string  `gorm:"type:varchar(21)" json:"parentId"`
 	Type        MenuType `json:"type"`
 	Route       *string  `gorm:"type:text" json:"route"`
 	Component   *string  `gorm:"type:text" json:"component"`
@@ -41,6 +43,11 @@ type MenuList struct {
 
 func (m *Menu) TableName() string {
 	return "menu"
+}
+
+func (m *Menu) BeforeCreate(tx *gorm.DB) error {
+	m.MenuID = idutils.Nanoid.Must()
+	return nil
 }
 
 func (m *Menu) Validate() error {

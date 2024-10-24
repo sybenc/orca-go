@@ -1,5 +1,10 @@
 package models
 
+import (
+	"gorm.io/gorm"
+	"orca/pkg/utils/idutils"
+)
+
 type User struct {
 	Model `json:",inline"`
 
@@ -19,4 +24,13 @@ type UserList struct {
 
 func (u *User) TableName() string {
 	return "users"
+}
+
+func (u *User) BeforeCreate(tx *gorm.DB) error {
+	var err error
+	u.UserID, err = idutils.Sonyflake.NextID()
+	if err != nil {
+		return err
+	}
+	return nil
 }

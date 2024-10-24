@@ -1,13 +1,28 @@
 package code
 
 import (
+	"database/sql/driver"
 	"log"
+	"orca/pkg/errors"
 	"sync"
 )
 
 //go:generate codegen -type=Code -output register.go
 //go:generate codegen -type=Code -doc -output ../../docs/error_code.md
 type Code int
+
+func (c *Code) Value() (driver.Value, error) {
+	return int(*c), nil
+}
+
+func (c *Code) Scan(value interface{}) error {
+	v, ok := value.(int64)
+	if !ok {
+		return errors.New("failed to scan code")
+	}
+	*c = Code(v)
+	return nil
+}
 
 var Codes = map[Code]Coder{}
 var codeMutex = &sync.Mutex{}
@@ -76,7 +91,7 @@ func register(code Code, httpStatus int, message string, refs ...string) {
 			"401：客户端未通过身份验证\n" +
 			"403：客户端无权访问指定资源\n" +
 			"404：找不到指定资源\n" +
-			"409：请求的资源存在冲突\n" + 
+			"409：请求的资源存在冲突\n" +
 			"500：服务器内部发生错误\n")
 	}
 	var reference string
