@@ -10,7 +10,7 @@ import (
 	"orca/pkg/response"
 )
 
-func (m *menuController) Create(c *gin.Context) {
+func (m *menuCtrl) Create(c *gin.Context) {
 	var menu models.Menu
 	if err := c.ShouldBind(&menu); err != nil {
 		response.Fail(c, errors.WithCode(code.ErrBind, "创建菜单时，数据绑定错误"))

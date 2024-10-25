@@ -18,10 +18,10 @@ const (
 )
 
 type UserAuth struct {
-	ID         uint64     `gorm:"type:bigint" json:"id"`
-	UserAuthID uint64     `gorm:"type:bigint" json:"userAuthId"`
-	Password   string     `gorm:"type:var(255)" json:"password"`
-	Status     UserStatus `json:"status"`
+	ID       uint64     `gorm:"type:bigint" json:"id"`
+	UserID   uint64     `gorm:"type:bigint" json:"userAuthId"`
+	Password string     `gorm:"type:var(255)" json:"password"`
+	Status   UserStatus `json:"status"`
 }
 
 func (ua *UserAuth) TableName() string {

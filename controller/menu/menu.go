@@ -1,5 +1,5 @@
 package menu
 
-var Controller = &menuController{}
+var Ctrl = &menuCtrl{}
 
-type menuController struct{}
+type menuCtrl struct{}

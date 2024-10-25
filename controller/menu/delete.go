@@ -10,7 +10,7 @@ import (
 	"orca/pkg/response"
 )
 
-func (m *menuController) Delete(c *gin.Context) {
+func (m *menuCtrl) Delete(c *gin.Context) {
 	var menu []models.Menu
 	codes := c.QueryArray("codes")
 	if len(codes) == 0 {

@@ -1,12 +1,12 @@
 create table if not exists menu
 (
-    menu_id     bigint unsigned auto_increment comment '菜单唯一ID',
-    created_at  datetime    not null default current_timestamp comment '创建时间',
-    updated_at  datetime    not null default current_timestamp on update current_timestamp comment '最后更新时间',
+    menu_id     varchar(21) comment '菜单唯一ID',
+    created_at  datetime     not null default current_timestamp comment '创建时间',
+    updated_at  datetime     not null default current_timestamp on update current_timestamp comment '最后更新时间',
     deleted_at  bigint                default 0 comment '删除时间',
     label       varchar(20)  not null comment '菜单名称',
     code        varchar(255) not null comment '菜单编码',
-    parent_id   bigint unsigned       default null comment '父级菜单ID',
+    parent_id   varchar(21)           default null comment '父级菜单ID',
     type        enum (
         'Menu',      # 菜单
         'Directory', # 目录

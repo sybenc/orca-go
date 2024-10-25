@@ -10,7 +10,7 @@ import (
 	"orca/pkg/response"
 )
 
-func (m *menuController) Update(c *gin.Context) {
+func (m *menuCtrl) Update(c *gin.Context) {
 	var menu models.Menu
 	code_ := c.Param("code")
 

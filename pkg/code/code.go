@@ -3,7 +3,6 @@ package code
 import (
 	"database/sql/driver"
 	"log"
-	"orca/pkg/errors"
 	"sync"
 )
 
@@ -16,10 +15,7 @@ func (c *Code) Value() (driver.Value, error) {
 }
 
 func (c *Code) Scan(value interface{}) error {
-	v, ok := value.(int64)
-	if !ok {
-		return errors.New("failed to scan code")
-	}
+	v, _ := value.(int64)
 	*c = Code(v)
 	return nil
 }

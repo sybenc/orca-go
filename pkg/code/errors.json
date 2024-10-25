@@ -3,8 +3,10 @@
   "ErrBind": "参数绑定错误",
   "ErrInternalServer": "服务器内部错误",
   "ErrMenuAlreadyExist": "菜单已存在",
-  "ErrMenuNotFound": "菜单未找到",
+  "ErrMenuNotFound": "菜单不存在",
   "ErrNotFound": "资源未找到",
+  "ErrUserAlreadyExist": "用户已存在",
+  "ErrUserNotFound": "用户不存在",
   "ErrValidate": "字段验证错误",
   "Success": "请求成功"
 }

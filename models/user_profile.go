@@ -15,25 +15,25 @@ const (
 )
 
 type UserProfile struct {
-	ID            uint64     `gorm:"type:bigint" json:"id"`
-	UserProfileID uint64     `json:"userProfileId"`
-	Email         string     `gorm:"type:varchar(64);not null" json:"email"`
-	Phone         string     `gorm:"type:varchar(20)" json:"phone"`
-	FirstName     string     `gorm:"type:varchar(20)" json:"firstName"`
-	LastName      string     `gorm:"type:varchar(20)" json:"lastName"`
-	NickName      string     `gorm:"type:varchar(20)" json:"nickName"`
-	Gender        UserGender `json:"gender"`
-	Country       string     `gorm:"type:varchar(100)" json:"country"`
-	Province      string     `gorm:"type:varchar(100)" json:"province"`
-	City          string     `gorm:"type:varchar(100)" json:"city"`
-	Address       string     `gorm:"type:varchar(255)" json:"address"`
-	ZipCode       string     `gorm:"type:varchar(10)" json:"zipCode"`
-	Bio           string     `gorm:"type:varchar(255)" json:"bio"`
-	Website       string     `gorm:"type:varchar(255)" json:"website"`
-	Avatar        string     `gorm:"type:text" json:"avatar"`
-	DateOfBirth   time.Time  `json:"dateOfBirth"`
-	LastLoginAt   time.Time  `gorm:"type:datetime" json:"lastLoginAt"`
-	LastLoginIP   string     `gorm:"type:varchar(128);not null" json:"lastLoginIp"`
+	ID          uint64     `gorm:"type:bigint" json:"id"`
+	UserID      uint64     `json:"userProfileId"`
+	Email       string     `gorm:"type:varchar(64);not null" json:"email"`
+	Phone       string     `gorm:"type:varchar(20)" json:"phone"`
+	FirstName   string     `gorm:"type:varchar(20)" json:"firstName"`
+	LastName    string     `gorm:"type:varchar(20)" json:"lastName"`
+	NickName    string     `gorm:"type:varchar(20)" json:"nickName"`
+	Gender      UserGender `json:"gender"`
+	Country     string     `gorm:"type:varchar(100)" json:"country"`
+	Province    string     `gorm:"type:varchar(100)" json:"province"`
+	City        string     `gorm:"type:varchar(100)" json:"city"`
+	Address     string     `gorm:"type:varchar(255)" json:"address"`
+	ZipCode     string     `gorm:"type:varchar(10)" json:"zipCode"`
+	Bio         string     `gorm:"type:varchar(255)" json:"bio"`
+	Website     string     `gorm:"type:varchar(255)" json:"website"`
+	Avatar      string     `gorm:"type:text" json:"avatar"`
+	DateOfBirth time.Time  `json:"dateOfBirth"`
+	LastLoginAt time.Time  `gorm:"type:datetime" json:"lastLoginAt"`
+	LastLoginIP string     `gorm:"type:varchar(128);not null" json:"lastLoginIp"`
 }
 
 func (u *UserProfile) TableName() string {

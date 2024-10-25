@@ -9,7 +9,7 @@ import (
 	"orca/pkg/response"
 )
 
-func (m *menuController) Get(c *gin.Context) {
+func (m *menuCtrl) Get(c *gin.Context) {
 	code_ := c.Param("code")
 	var menu models.Menu
 	if db.Mysql.Model(&models.Menu{}).Where("code = ?", code_).First(&menu).RowsAffected != 1 {

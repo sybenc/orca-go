@@ -6,6 +6,7 @@ import (
 )
 
 type Role struct {
+	Model       `json:",inline"`
 	RoleID      string `gorm:"type:varchar(21)" json:"roleId"`
 	Label       string `gorm:"type:varchar(20)" json:"label"`
 	Code        string `gorm:"type:varchar(255)" json:"code"`
@@ -13,7 +14,7 @@ type Role struct {
 	Description string `gorm:"type:text" json:"description"`
 
 	Menu []*Menu `gorm:"many2many:role_menu" json:"menu,omitempty"`
-	Api  []*Api  `gorm:"many2many:role_api" json:"api,omitempty"`
+	Api  []*Api  `gorm:"many2many:role_api.sql" json:"api,omitempty"`
 }
 
 type RoleList struct {

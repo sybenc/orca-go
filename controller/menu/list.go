@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-func (m *menuController) List(c *gin.Context) {
+func (m *menuCtrl) List(c *gin.Context) {
 	var menuList models.MenuList
 	code_ := c.Query("code")
 	label := c.Query("label")

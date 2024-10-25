@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+const prefix = "[Orca] "
+
 // formatInfo 包含所有的错误信息。
 type formatInfo struct {
 	code    code.Code
@@ -106,7 +108,7 @@ func format(k int, jsonData []map[string]interface{}, str *bytes.Buffer, finfo *
 			caller := fmt.Sprintf("#%d", k)
 			if finfo.stack != nil {
 				f := Frame((*finfo.stack)[0])
-				caller = fmt.Sprintf("%s %s:%d (%s)",
+				caller = fmt.Sprintf(prefix+"%s %s:%d (%s)",
 					caller,
 					f.file(),
 					f.line(),
@@ -122,7 +124,7 @@ func format(k int, jsonData []map[string]interface{}, str *bytes.Buffer, finfo *
 		if flagDetail || flagTrace {
 			if finfo.stack != nil {
 				f := Frame((*finfo.stack)[0])
-				fmt.Fprintf(str, "%s%s - #%d [%s:%d (%s)] (%d) %s",
+				fmt.Fprintf(str, prefix+"%s%s\n#%d [%s:%d (%s)] (%d) %s",
 					sep,
 					finfo.err,
 					k,
@@ -133,11 +135,11 @@ func format(k int, jsonData []map[string]interface{}, str *bytes.Buffer, finfo *
 					finfo.message,
 				)
 			} else {
-				fmt.Fprintf(str, "%s%s - #%d %s", sep, finfo.err, k, finfo.message)
+				fmt.Fprintf(str, prefix+"%s%s\n#%d %s", sep, finfo.err, k, finfo.message)
 			}
 
 		} else {
-			fmt.Fprintf(str, finfo.message)
+			fmt.Fprintf(str, prefix+finfo.message)
 		}
 	}
 

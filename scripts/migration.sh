@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # 定义文本颜色变量
 red='\033[31m'
@@ -23,12 +23,17 @@ echo -e "${prefix}数据库名称：${green}${bold}$db_name${reset}"
 echo -e "${prefix}数据库主机地址：${green}${bold}$db_host${reset}"
 
 sql_files=(
-  './scripts/sql/users.sql'
-  './scripts/sql/user_auth.sql'
-  './scripts/sql/menu.sql'
-  './scripts/sql/roles.sql'
-  './scripts/sql/role_menu.sql'
-  './scripts/sql/user_role.sql'
+  './sql/users.sql'
+  './sql/user_auth.sql'
+  './sql/user_login_devices.sql'
+  './sql/user_password_history.sql'
+  './sql/user_profile.sql'
+  './sql/menu.sql'
+  './sql/apis.sql'
+  './sql/roles.sql'
+  './sql/role_menu.sql'
+  './sql/user_role.sql'
+  './sql/role_api.sql'
 )
 
 echo -e "${yellow}${prefix}正在检查数据库 ${green}${db_name}${yellow} 是否存在...${reset}"
@@ -60,3 +65,4 @@ do
 done
 
 echo -e "${prefix}所有 SQL 脚本执行完毕！"
+
